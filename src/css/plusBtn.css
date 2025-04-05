@@ -1,0 +1,26 @@
+/* General button style */
+.button {
+    -fx-text-fill: black; /* Text color */
+    -fx-border-radius: 5px; /* Rounded border corners */
+    -fx-background-radius: 40px; /* Rounded background corners */
+    -fx-background-color: #86c8d6; /* Default background color */
+}
+
+/* Hover effect for general buttons */
+.button:hover {
+    -fx-background-color: #e8784c; /* Hover background color */
+    -fx-opacity: 1.0; /* Set opacity to fully visible */
+    -fx-text-fill: white; /* Text color on hover */
+    -fx-border-radius: 5px; /* Match the default border radius */
+    -fx-background-radius: 40px; /* Match the default background radius */
+}
+
+/* Specific style for #confirm button */
+#confirm {
+    -fx-background-color: #86c8d6; /* Default color */
+}
+
+/* Hover effect for #confirm button */
+#confirm:hover {
+    -fx-background-color: #00add2; /* Different hover color */
+}

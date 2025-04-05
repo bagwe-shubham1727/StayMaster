@@ -1,0 +1,28 @@
+.button:hover {
+    -fx-background-color: #e8784c; /* Valid background color */
+    -fx-opacity: 0.8; /* Specify a value for opacity (e.g., between 0 and 1) */
+    -fx-pref-width: 80px; /* Specify units for width */
+    -fx-pref-height: 29px; /* Specify units for height */
+    -fx-text-fill: white; /* Valid text color */
+    -fx-background-radius: 13; /* Valid background radius */
+}
+
+.button {
+    -fx-background-color: #86c8d6; /* Valid background color */
+    -fx-text-fill: black; /* Valid text color */
+    -fx-border-radius: 5; /* Valid border radius */
+    -fx-background-radius: 13; /* Valid background radius */
+}
+
+.button2 {
+    -fx-text-fill: black; /* Valid text color */
+}
+
+.button2:hover {
+    -fx-background-color: #e8784c; /* Valid background color */
+    -fx-opacity: 0.8; /* Specify a value for opacity */
+    -fx-pref-width: 80px; /* Specify units for width */
+    -fx-pref-height: 29px; /* Specify units for height */
+    -fx-text-fill: white; /* Valid text color */
+    -fx-background-radius: 13; /* Valid background radius */
+}

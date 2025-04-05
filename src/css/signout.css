@@ -1,0 +1,20 @@
+/* General button style */
+.button {
+    -fx-background-color: transparent; /* Transparent background */
+    -fx-font-size: 15px; /* Ensure unit is specified */
+    -fx-pref-width: 90px; /* Set button width */
+    -fx-pref-height: 25px; /* Set button height */
+    -fx-text-fill: black; /* Default text color */
+}
+
+/* Hover effect for button */
+.button:hover {
+    -fx-background-color: #e8784c; /* Background color on hover */
+    -fx-border-color: transparent; /* Prevent empty border-color property */
+    -fx-border-radius: 0; /* Set border radius */
+    -fx-background-radius: 13px; /* Rounded corners */
+    -fx-pref-width: 90px; /* Ensure width remains consistent */
+    -fx-pref-height: 25px; /* Ensure height remains consistent */
+    -fx-filter: none; /* Remove blur or adjust as necessary */
+    -fx-text-fill: white; /* Text color on hover */
+}
