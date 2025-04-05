@@ -1,0 +1,19 @@
+/* Default button style */
+.button {
+    -fx-background-color: #86c8d6; /* Default background color */
+    -fx-border-color: transparent; /* No border by default */
+    -fx-border-radius: 5; /* Rounded border */
+    -fx-pref-width: 152px; /* Button width */
+    -fx-pref-height: 38px; /* Button height */
+    -fx-background-radius: 5; /* Rounded background */
+    -fx-padding: 5; /* Padding inside the button */
+    -fx-text-fill: black; /* Text color */
+}
+
+/* Hover effect */
+.button:hover {
+    -fx-background-color: #e8784c; /* Change background color on hover */
+    -fx-pref-width: 150px; /* Adjust width (optional) */
+    -fx-pref-height: 36px; /* Adjust height (optional) */
+    -fx-text-fill: white; /* Change text color */
+}

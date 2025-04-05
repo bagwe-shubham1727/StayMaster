@@ -1,0 +1,13 @@
+.image {
+    -fx-background-image: url("../Icons/setting2.jpg"); /* Default image */
+    -fx-background-size: 33.5px; /* Scales the background */
+    -fx-background-repeat: no-repeat; /* Ensures the background doesn't repeat */
+    -fx-background-color: white; /* White background color */
+}
+
+.image:hover {
+    -fx-background-color: white; /* Keeps the white background on hover */
+    -fx-background-size: 33.5px; /* Maintains the size on hover */
+    -fx-background-repeat: no-repeat; /* Prevents repeat on hover */
+    -fx-background-image: url("../Icons/setting3.jpg"); /* Changes the image on hover */
+}

@@ -1,0 +1,9 @@
+.btn {
+    -fx-background-color: #86c8d6; /* Valid background color */
+    -fx-background-radius: 15; /* Valid background radius */
+}
+
+.btn:hover {
+    -fx-background-color: #00add2; /* Hover background color */
+    -fx-background-radius: 15; /* Keep the same radius for hover */
+}
