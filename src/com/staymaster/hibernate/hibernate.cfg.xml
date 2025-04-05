@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "/Users/suhas/Suhas/Sem2/PSA/Project/StayMaster/src/com/staymaster/hibernate/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database Connection Properties -->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/staymaster</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">12345</property>
+        
+        <!-- Dialect Configuration -->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        
+        <!-- Schema Update Strategy -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        
+        <!-- Logging and Debugging -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- Entity Mappings -->
+        <mapping class="com.staymaster.models.User"/>
+        <mapping class="com.staymaster.models.Booking"/>
+        <mapping class="com.staymaster.models.Hotel"/>
+        <mapping class="com.staymaster.models.Review"/>
+        <mapping class="com.staymaster.models.Room"/>
+        <mapping class="com.staymaster.models.Amenity"/>
+    </session-factory>
+</hibernate-configuration>
