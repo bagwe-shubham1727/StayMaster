@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1155.0" style="-fx-background-color: linear-gradient(to bottom, #86c8d6, #d9f2f9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stayease.controllers.AdminHotelManagement">
+<AnchorPane prefHeight="700.0" prefWidth="1155.0" style="-fx-background-color: linear-gradient(to bottom, #86c8d6, #d9f2f9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.staymaster.controllers.AdminHotelManagement">
    <children>
       <!-- Main Header Section -->
       <AnchorPane fx:id="headerPane" prefHeight="85.0" prefWidth="1155.0" style="-fx-background-color: #00add2; -fx-padding: 10;">

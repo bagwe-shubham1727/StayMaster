@@ -24,131 +24,128 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class AdminPortalController {
-	
-	
-	@FXML
-	private TextField firstNameTxt;
-	
-	@FXML
-	private TextField lastNameTxt;
-	
-	@FXML
-	private TextField addressTxt;
-	
-	@FXML
-	private TextField dobTxt;
-	
-	@FXML
-	private TextField genderTxt;
-	
-	@FXML
-	private TextField phoneNumberTxt;
-	
-	@FXML
-	private TextField emailTxt;
-	
-	@FXML
-	private TextField passwordTxt;
-	
-	@FXML
-	private TextField confirmPasswordTxt;
-	
-	
-	@FXML
-	public void handleAddUser(ActionEvent event) throws IOException {
-		try {
-		    // Load the admin dashboard page
-//		    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hotelhub/views/AdminUserAdd.fxml"));
-//		    Parent adminDashboard = loader.load();
-//		    Scene adminDashboardScene = new Scene(adminDashboard);
-//
-//		    // Get the current stage and set the new scene
-//		    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//		    stage.setScene(adminDashboardScene);
-//		    stage.show();
-			NavigationManager.navigateTo("/com/stayease/views/AdminUserAdd.fxml", "Admin Page");
-		} catch(Exception e) {
-		    e.printStackTrace();
-		    // Show an error message if loading the admin dashboard fails
-		    Alert alert = new Alert(Alert.AlertType.ERROR);
-		    alert.setTitle("Error");
-		    alert.setHeaderText("Failed to load admin dashboard");
-		    alert.setContentText("An error occurred while loading the admin dashboard. Please try again.");
-		    alert.showAndWait();
-		}
-	}
-	
-	
-	@FXML
-	public void handleAddHotel(ActionEvent event) throws IOException {
-		try {
-			NavigationManager.navigateTo("/com/stayease/views/AdminHotelDetails.fxml", "Admin Hotel Dashboard");
-		} catch(Exception e) {
-			e.printStackTrace();
-		    Alert alert = new Alert(Alert.AlertType.ERROR);
-		    alert.setTitle("Error");
-		    alert.setHeaderText("Failed to load admin dashboard");
-		    alert.setContentText("An error occurred while loading the admin dashboard. Please try again.");
-		    alert.showAndWait();
-		}
-	}
-	
-	@FXML
-	public void handleAddUserToDb(ActionEvent event) throws IOException {
-		
-		  if (!validateFields()) {
-	            showAlert(Alert.AlertType.ERROR, "Validation Error", "Please fill in all fields correctly.");
-	            return;
-	        }
-		SessionFactory sessionFactory = SessionManager.getSessionFactory();
-		String firstName = firstNameTxt.getText();
-		String lastName = lastNameTxt.getText();
-		String address = addressTxt.getText();
-		String phoneNumber = phoneNumberTxt.getText();
-		String dateOfBirth = dobTxt.getText();
-		String gender = genderTxt.getText();
-		String email = emailTxt.getText();
-		String password = passwordTxt.getText();
-		
-		java.sql.Date dob = convertToSqlDate(dateOfBirth);
-		  // Hash the password using BCrypt
-	    String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
-		
-		User user = new User();
-		user.setFirstName(firstName);
-		user.setLastName(lastName);
-		user.setAddress(address);
-		user.setPhoneNo(phoneNumber);
-		user.setGender(gender);
-		user.setEmail(email);
-		user.setPassword(password);
-		user.setPassword(hashedPassword);
-		user.setDateOfBirth(dob);
-		
-	    // Save user to the database
-		
-		UserDao userDao = new UserDao(sessionFactory);
-		userDao.save(user);
-		System.out.println("Successfully added to Database");
-		
-	    showAlert(Alert.AlertType.INFORMATION, "Success", "User added successfully!");
-	}
-	
+
+    @FXML
+    private TextField firstNameTxt;
+
+    @FXML
+    private TextField lastNameTxt;
+
+    @FXML
+    private TextField addressTxt;
+
+    @FXML
+    private TextField dobTxt;
+
+    @FXML
+    private TextField genderTxt;
+
+    @FXML
+    private TextField phoneNumberTxt;
+
+    @FXML
+    private TextField emailTxt;
+
+    @FXML
+    private TextField passwordTxt;
+
+    @FXML
+    private TextField confirmPasswordTxt;
+
+    @FXML
+    public void handleAddUser(ActionEvent event) throws IOException {
+        try {
+            // Load the admin dashboard page
+            // FXMLLoader loader = new
+            // FXMLLoader(getClass().getResource("/com/hotelhub/views/AdminUserAdd.fxml"));
+            // Parent adminDashboard = loader.load();
+            // Scene adminDashboardScene = new Scene(adminDashboard);
+            //
+            // // Get the current stage and set the new scene
+            // Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            // stage.setScene(adminDashboardScene);
+            // stage.show();
+            NavigationManager.navigateTo("/com/staymaster/views/AdminUserAdd.fxml", "Admin Page");
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Show an error message if loading the admin dashboard fails
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to load admin dashboard");
+            alert.setContentText("An error occurred while loading the admin dashboard. Please try again.");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    public void handleAddHotel(ActionEvent event) throws IOException {
+        try {
+            NavigationManager.navigateTo("/com/staymaster/views/AdminHotelDetails.fxml", "Admin Hotel Dashboard");
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to load admin dashboard");
+            alert.setContentText("An error occurred while loading the admin dashboard. Please try again.");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    public void handleAddUserToDb(ActionEvent event) throws IOException {
+
+        if (!validateFields()) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "Please fill in all fields correctly.");
+            return;
+        }
+        SessionFactory sessionFactory = SessionManager.getSessionFactory();
+        String firstName = firstNameTxt.getText();
+        String lastName = lastNameTxt.getText();
+        String address = addressTxt.getText();
+        String phoneNumber = phoneNumberTxt.getText();
+        String dateOfBirth = dobTxt.getText();
+        String gender = genderTxt.getText();
+        String email = emailTxt.getText();
+        String password = passwordTxt.getText();
+
+        java.sql.Date dob = convertToSqlDate(dateOfBirth);
+        // Hash the password using BCrypt
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
+        User user = new User();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setAddress(address);
+        user.setPhoneNo(phoneNumber);
+        user.setGender(gender);
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setPassword(hashedPassword);
+        user.setDateOfBirth(dob);
+
+        // Save user to the database
+
+        UserDao userDao = new UserDao(sessionFactory);
+        userDao.save(user);
+        System.out.println("Successfully added to Database");
+
+        showAlert(Alert.AlertType.INFORMATION, "Success", "User added successfully!");
+    }
+
     @FXML
     private void handleBackButton(ActionEvent event) throws IOException {
         // Add your event handling logic here
         System.out.println("Back button clicked!");
         NavigationManager.goBack();
-        
+
     }
-	
-	
-	public static java.sql.Date convertToSqlDate(String dateString) {
+
+    public static java.sql.Date convertToSqlDate(String dateString) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat.setLenient(false);
-        
+
         try {
-        	java.util.Date utilDate = dateFormat.parse(dateString);
+            java.util.Date utilDate = dateFormat.parse(dateString);
             return new java.sql.Date(utilDate.getTime());
         } catch (ParseException e) {
             // Handle the case when the date string is in an invalid format
@@ -156,7 +153,7 @@ public class AdminPortalController {
             return null;
         }
     }
-	
+
     @FXML
     private void handleBackButtonToLogin(ActionEvent event) throws IOException {
         // Add your event handling logic here
@@ -167,22 +164,15 @@ public class AdminPortalController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(adminPortalScene);
         stage.show();
-//    	NavigationManager.goBack();
+        // NavigationManager.goBack();
     }
-    
-    
-    
-    
-    
-    
-    
-	
-    
-    //validation for registration fields entered
-	
+
+    // validation for registration fields entered
+
     private boolean validateFields() {
         return validateFirstName() && validateLastName() && validateAddress() && validatePhoneNumber()
-                && validateDateOfBirth() && validateGender() && validateEmail() && validatePassword() && validateConfirmPassword();
+                && validateDateOfBirth() && validateGender() && validateEmail() && validatePassword()
+                && validateConfirmPassword();
     }
 
     private boolean validateFirstName() {
@@ -274,6 +264,5 @@ public class AdminPortalController {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
 
 }
