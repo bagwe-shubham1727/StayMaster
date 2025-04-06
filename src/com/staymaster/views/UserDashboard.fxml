@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="450.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stayease.controllers.UserDashboardController" style="-fx-background-color: linear-gradient(to bottom, #e3f2fd, #ffffff);">
+<AnchorPane prefHeight="450.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.staymaster.controllers.UserDashboardController" style="-fx-background-color: linear-gradient(to bottom, #e3f2fd, #ffffff);">
    <children>
       <HBox focusTraversable="true" prefHeight="619.0" prefWidth="286.0" style="-fx-background-color: linear-gradient(to bottom, #2196F3, #0D47A1);">
          <children>
@@ -26,7 +26,7 @@
                         <Image url="@../../../HotelHub_Logo.jpg" />
                      </image>
                   </ImageView>
-                  <Label text="StayEase" textFill="white">
+                  <Label text="staymaster" textFill="white">
                      <font>
                         <Font name="Arial Black" size="26.0" />
                      </font>

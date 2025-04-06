@@ -38,7 +38,7 @@ public class UserdashboardController {
     @FXML
     private TextField fieldLastName;
 
-    @FXML 
+    @FXML
     private Button bookingHistory;
 
     @FXML
@@ -105,7 +105,7 @@ public class UserdashboardController {
 
     @FXML
     private void buttonBookRoom() throws IOException {
-        NavigationManager.navigateTo("/com/stayease/views/BookRoom.fxml", "Book Room");
+        NavigationManager.navigateTo("/com/staymaster/views/BookRoom.fxml", "Book Room");
     }
 
     @FXML
@@ -124,7 +124,7 @@ public class UserdashboardController {
     @FXML
     public void handleBookingHistory(ActionEvent event) throws IOException {
         try {
-            NavigationManager.navigateTo("/com/stayease/views/BookingHistory.fxml", "Booking History");
+            NavigationManager.navigateTo("/com/staymaster/views/BookingHistory.fxml", "Booking History");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -139,7 +139,8 @@ public class UserdashboardController {
 
         // Validate that all fields are not empty
         if (fieldFirstName.getText().isEmpty() || fieldLastName.getText().isEmpty() || fieldPhone.getText().isEmpty()
-                || fieldEmail.getText().isEmpty() || fieldAddress.getText().isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
+                || fieldEmail.getText().isEmpty() || fieldAddress.getText().isEmpty() || newPassword.isEmpty()
+                || confirmPassword.isEmpty()) {
             showAlert("All fields are required.");
             return;
         }
