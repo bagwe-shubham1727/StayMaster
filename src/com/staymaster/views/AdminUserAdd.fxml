@@ -11,6 +11,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.control.PasswordField?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="988.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.staymaster.controllers.AdminPortalController">
    <children>
@@ -137,11 +138,11 @@
                   </LinearGradient>
                </textFill>
             </Button>
-            <TextField fx:id="passwordTxt" alignment="TOP_LEFT" layoutX="399.0" layoutY="418.0" promptText="Password" style="-fx-border-color: #c9642c;">
+            <PasswordField fx:id="passwordTxt" alignment="TOP_LEFT" layoutX="399.0" layoutY="418.0" promptText="Password" style="-fx-border-color: #c9642c;">
                <font>
                   <Font name="COCOMAT Light" size="16.0" />
                </font>
-            </TextField>
+            </PasswordField>
             <Text layoutX="476.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
                <font>
                   <Font name="COCOMAT Light" size="16.0" />

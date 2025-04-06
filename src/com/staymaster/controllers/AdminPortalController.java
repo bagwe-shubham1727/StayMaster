@@ -3,6 +3,8 @@ package com.staymaster.controllers;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.regex.Pattern;
 
 import org.hibernate.SessionFactory;
@@ -177,17 +179,33 @@ public class AdminPortalController {
 
     private boolean validateFirstName() {
         String firstName = firstNameTxt.getText();
+        
+        // Check if the first name is empty
         if (firstName.isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, "Validation Error", "Please enter the first name.");
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "Please enter your first name.");
             return false;
         }
+
+        // Check if the first name contains only letters
+        if (!firstName.matches("[a-zA-Z]+")) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "First name should only contain letters.");
+            return false;
+        }
+
         return true;
     }
+
 
     private boolean validateLastName() {
         String lastName = lastNameTxt.getText();
         if (lastName.isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, "Validation Error", "Please enter the last name.");
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "Please enter your last name.");
+            return false;
+        }
+        
+     // Check if the first name contains only letters
+        if (!lastName.matches("[a-zA-Z]+")) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "Last name should only contain letters.");
             return false;
         }
         return true;
@@ -213,10 +231,27 @@ public class AdminPortalController {
 
     private boolean validateDateOfBirth() {
         String dob = dobTxt.getText();
+        
+        // Validate date of birth format using regex
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             sdf.setLenient(false);
-            sdf.parse(dob);
+            Date dobDate = sdf.parse(dob);
+            
+            // Get today's date and calculate the maximum valid date (100 years ago)
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.YEAR, -100);
+            Date maxValidDate = cal.getTime();
+            
+            // Check if the entered date is in the future or more than 100 years ago
+            if (dobDate.after(new Date())) {
+                showAlert(Alert.AlertType.ERROR, "Validation Error", "Date of birth cannot be in the future.");
+                return false;
+            } else if (dobDate.before(maxValidDate)) {
+                showAlert(Alert.AlertType.ERROR, "Validation Error", "Date of birth must be within the last 100 years.");
+                return false;
+            }
+            
             return true;
         } catch (ParseException e) {
             showAlert(Alert.AlertType.ERROR, "Validation Error", "Please enter a valid date of birth (YYYY-MM-DD).");

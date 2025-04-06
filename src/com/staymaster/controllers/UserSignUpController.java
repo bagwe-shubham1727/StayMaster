@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.regex.Pattern;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.hibernate.SessionFactory;
 import org.mindrot.jbcrypt.BCrypt;
@@ -22,6 +24,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.scene.control.ComboBox;
+import javafx.collections.FXCollections;
 
 public class UserSignUpController {
 	
@@ -38,7 +42,7 @@ public class UserSignUpController {
 	private TextField dobTxt;
 	
 	@FXML
-	private TextField genderTxt;
+	private ComboBox<String> genderComboBox;
 	
 	@FXML
 	private TextField phoneNumberTxt;
@@ -51,6 +55,12 @@ public class UserSignUpController {
 
 	@FXML
 	private PasswordField confirmPasswordTxt;
+	
+	// Initialize the ComboBox with gender options
+    public void initialize() {
+        // Set the items for the gender ComboBox
+        genderComboBox.setItems(FXCollections.observableArrayList("Male", "Female"));
+    }
 	
 	@FXML
 	public void handleSignupUserToDb(ActionEvent event) throws IOException {
@@ -65,13 +75,14 @@ public class UserSignUpController {
 	    // Get the session factory
 	    SessionFactory sessionFactory = SessionManager.getSessionFactory();
 
+
 	    // Retrieve user input from text fields
 	    String firstName = firstNameTxt.getText();
 	    String lastName = lastNameTxt.getText();
 	    String address = addressTxt.getText();
 	    String phoneNumber = phoneNumberTxt.getText();
 	    String dateOfBirth = dobTxt.getText();
-	    String gender = genderTxt.getText();
+	    String gender = genderComboBox.getValue();
 	    String email = emailTxt.getText();
 	    String password = passwordTxt.getText();
 
@@ -136,17 +147,33 @@ public class UserSignUpController {
     
     private boolean validateFirstName() {
         String firstName = firstNameTxt.getText();
+        
+        // Check if the first name is empty
         if (firstName.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Validation Error", "Please enter your first name.");
             return false;
         }
+
+        // Check if the first name contains only letters
+        if (!firstName.matches("[a-zA-Z]+")) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "First name should only contain letters.");
+            return false;
+        }
+
         return true;
     }
+
 
     private boolean validateLastName() {
         String lastName = lastNameTxt.getText();
         if (lastName.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Validation Error", "Please enter your last name.");
+            return false;
+        }
+        
+     // Check if the first name contains only letters
+        if (!lastName.matches("[a-zA-Z]+")) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "Last name should only contain letters.");
             return false;
         }
         return true;
@@ -173,11 +200,27 @@ public class UserSignUpController {
 
     private boolean validateDateOfBirth() {
         String dob = dobTxt.getText();
-        // Validate date of birth using regex or other methods as needed
+        
+        // Validate date of birth format using regex
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             sdf.setLenient(false);
-            sdf.parse(dob);
+            Date dobDate = sdf.parse(dob);
+            
+            // Get today's date and calculate the maximum valid date (100 years ago)
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.YEAR, -100);
+            Date maxValidDate = cal.getTime();
+            
+            // Check if the entered date is in the future or more than 100 years ago
+            if (dobDate.after(new Date())) {
+                showAlert(Alert.AlertType.ERROR, "Validation Error", "Date of birth cannot be in the future.");
+                return false;
+            } else if (dobDate.before(maxValidDate)) {
+                showAlert(Alert.AlertType.ERROR, "Validation Error", "Date of birth must be within the last 100 years.");
+                return false;
+            }
+            
             return true;
         } catch (ParseException e) {
             showAlert(Alert.AlertType.ERROR, "Validation Error", "Please enter a valid date of birth (YYYY-MM-DD).");
@@ -187,8 +230,13 @@ public class UserSignUpController {
 	
 
     private boolean validateGender() {
-        String gender = genderTxt.getText();
-        // You can add specific validations for gender if needed
+        String gender = genderComboBox.getValue();
+
+        // Ensure gender is selected
+        if (gender == null || gender.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "Please select your gender.");
+            return false;
+        }
         return true;
     }
 
