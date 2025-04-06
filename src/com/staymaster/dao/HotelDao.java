@@ -102,6 +102,16 @@ public class HotelDao {
             session.close();
         }
     }
+    
+    public Hotel getHotelByNameAndZipCode(String name, Long zipCode) {
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery("FROM Hotel WHERE name = :name AND zipCode = :zipCode", Hotel.class)
+                          .setParameter("name", name)
+                          .setParameter("zipCode", zipCode)
+                          .uniqueResult();
+        }
+    }
+
 	
 	
 }
