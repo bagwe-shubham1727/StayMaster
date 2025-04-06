@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: linear-gradient(to bottom, #d9f2f9, #86c8d6);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mainview.CustomerInfo_dialog_Controller">
+   <children>
+      <!-- Profile Picture Section -->
+      <VBox alignment="CENTER" layoutX="30.0" layoutY="20.0" prefHeight="360.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15px; -fx-padding: 10px;">
+         <children>
+            <ImageView fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: #ffffff; -fx-border-radius: 50%; -fx-padding: 10px;">
+               <image>
+                  <Image url="@../../../../Icons&amp;Images/585e4bf3cb11b227491c339a.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="dialog_Name" alignment="CENTER" text="Picture" wrapText="true" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #003366;" />
+         </children>
+      </VBox>
+
+      <!-- User Information Section -->
+      <VBox layoutX="250.0" layoutY="20.0" prefHeight="360.0" prefWidth="420.0" spacing="15.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15px; -fx-padding: 20px;">
+         <children>
+            <!-- Title -->
+            <Label text="User Information" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #003366;" />
+
+            <!-- Fields -->
+            <VBox spacing="10.0">
+               <HBox spacing="10.0">
+                  <VBox spacing="5.0">
+                     <Label text="First Name" />
+                     <TextField fx:id="dialog_ID" promptText="Enter First Name" style="-fx-background-radius: 10px;" />
+                  </VBox>
+                  <VBox spacing="5.0">
+                     <Label text="Last Name" />
+                     <TextField fx:id="dialog_NRC" promptText="Enter Last Name" style="-fx-background-radius: 10px;" />
+                  </VBox>
+               </HBox>
+               <HBox spacing="10.0">
+                  <VBox spacing="5.0">
+                     <Label text="Phone" />
+                     <TextField fx:id="dialog_Phone1" promptText="Enter Phone" style="-fx-background-radius: 10px;" />
+                  </VBox>
+                  <VBox spacing="5.0">
+                     <Label text="Alternative Phone" />
+                     <TextField fx:id="dialog_Phone2" promptText="Enter Alt Phone" style="-fx-background-radius: 10px;" />
+                  </VBox>
+               </HBox>
+               <Label text="Email" />
+               <TextField fx:id="dialog_Gmail" promptText="Enter Email" style="-fx-background-radius: 10px;" />
+               <Label text="Address" />
+               <TextField fx:id="dialog_Address" promptText="Enter Address" style="-fx-background-radius: 10px;" />
+            </VBox>
+
+            <!-- Action Buttons -->
+            <HBox spacing="20.0" alignment="CENTER">
+               <Button fx:id="backBtn" onAction="#goSignOut" text="Back" style="-fx-background-color: #003366; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10px; -fx-padding: 5px 20px;" />
+               <Button fx:id="updateBtn" onAction="#goUpdate" text="Update" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10px; -fx-padding: 5px 20px;" />
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: linear-gradient(to right, #86c8d6, #d9f2f9);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stayease.controllers.AdminPortalController">
+   <children>
+      <!-- Left Section with Image -->
+      <AnchorPane prefHeight="400.0" prefWidth="400.0">
+         <children>
+            <ImageView fitHeight="400.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Icons&amp;Images/Images/hotel-4.jpg" />
+               </image>
+               <effect>
+                  <DropShadow radius="15.0" color="#00000088" />
+               </effect>
+            </ImageView>
+         </children>
+      </AnchorPane>
+
+      <!-- Right Section with Buttons -->
+      <VBox layoutX="400.0" layoutY="0.0" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #003366; -fx-padding: 20; -fx-border-color: #279B78; -fx-border-width: 5; -fx-border-radius: 10;" spacing="20.0">
+         <children>
+            <!-- Title -->
+            <Label text="Admin Portal" textFill="WHITE" style="-fx-font-size: 24px; -fx-font-weight: bold;" alignment="CENTER">
+               <effect>
+                  <Glow level="0.7" />
+               </effect>
+            </Label>
+
+            <!-- Buttons -->
+            <Button fx:id="buttonAdminAddHotel" text="Manage Hotel Details" onAction="#handleAddHotel" prefWidth="200.0" prefHeight="40.0"
+               style="-fx-background-color: linear-gradient(to bottom, #279B78, #1F7E63); -fx-text-fill: white; -fx-background-radius: 10; -fx-font-size: 16px;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="buttonAdminAddUser" text=" Manage User Details" onAction="#handleAddUser" prefWidth="200.0" prefHeight="40.0"
+               style="-fx-background-color: linear-gradient(to bottom, #279B78, #1F7E63); -fx-text-fill: white; -fx-background-radius: 10; -fx-font-size: 16px;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="buttonAdminBack" text="Sign Out" onAction="#handleBackButtonToLogin" prefWidth="200.0" prefHeight="40.0"
+               style="-fx-background-color: linear-gradient(to bottom, #D9534F, #C12E2A); -fx-text-fill: white; -fx-background-radius: 10; -fx-font-size: 16px;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
