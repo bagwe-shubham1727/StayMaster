@@ -1,9 +1,9 @@
-package com.stayease.config;
+package com.staymaster.config;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.stayease.models.Booking;
+import com.staymaster.models.Booking;
 
 public class SortUtil {
 

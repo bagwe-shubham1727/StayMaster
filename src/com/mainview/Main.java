@@ -12,12 +12,12 @@ import java.sql.Connection;
 
 import org.hibernate.SessionFactory;
 
-import com.stayease.config.HotelContext;
-import com.stayease.config.NavigationManager;
-import com.stayease.config.PostgresConnection;
-import com.stayease.dao.HotelDao;
-import com.stayease.hibernate.SessionManager;
-import com.stayease.models.Hotel;
+import com.staymaster.config.HotelContext;
+import com.staymaster.config.NavigationManager;
+import com.staymaster.config.PostgresConnection;
+import com.staymaster.dao.HotelDao;
+import com.staymaster.hibernate.SessionManager;
+import com.staymaster.models.Hotel;
 
 
 	public class Main extends Application{

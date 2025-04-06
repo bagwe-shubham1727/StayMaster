@@ -1,6 +1,6 @@
-package com.stayease.config;
+package com.staymaster.config;
 
-import com.stayease.models.Booking;
+import com.staymaster.models.Booking;
 
 public class BookingTreeNode {
     private Booking booking;

@@ -1,4 +1,4 @@
-package com.stayease.config;
+package com.staymaster.config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import com.stayease.dao.BookingDao;
-import com.stayease.models.Booking;
-import com.stayease.models.User;
+import com.staymaster.dao.BookingDao;
+import com.staymaster.models.Booking;
+import com.staymaster.models.User;
 
 public class BookingTree {
     private BookingTreeNode root;

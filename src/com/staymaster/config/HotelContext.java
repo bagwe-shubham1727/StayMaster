@@ -1,6 +1,6 @@
-package com.stayease.config;
+package com.staymaster.config;
 
-import com.stayease.models.Hotel;
+import com.staymaster.models.Hotel;
 
 public class HotelContext {
     private static Hotel currentHotel;

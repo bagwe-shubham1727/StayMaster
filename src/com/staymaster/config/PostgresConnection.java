@@ -1,10 +1,10 @@
-package com.stayease.config;
+package com.staymaster.config;
 import java.sql.*;
 
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
 
-import com.stayease.hibernate.SessionManager;
+import com.staymaster.hibernate.SessionManager;
 
 public class PostgresConnection {
 
