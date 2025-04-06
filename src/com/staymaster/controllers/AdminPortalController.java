@@ -269,13 +269,26 @@ public class AdminPortalController {
 	}
 
 	private boolean validateEmail() {
-		String email = emailTxt.getText();
-		if (!Pattern.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}", email)) {
-			showAlert(Alert.AlertType.ERROR, "Validation Error", "Please enter a valid email address.");
-			return false;
-		}
-		return true;
-	}
+        String email = emailTxt.getText();
+
+        // Validate email using regex
+        if (!Pattern.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}", email)) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "Please enter a valid email address.");
+            return false;
+        }
+
+        // Check if email already exists in the database
+        SessionFactory sessionFactory = SessionManager.getSessionFactory();
+        UserDao userDao = new UserDao(sessionFactory);
+        User existingUser = userDao.findByEmail(email);
+
+        if (existingUser != null) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "An account with this email already exists.");
+            return false;
+        }
+
+        return true;
+    }
 
 	private boolean validatePassword() {
 		String password = passwordTxt.getText();
