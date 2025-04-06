@@ -1,4 +1,4 @@
-package com.stayease.config;
+package com.staymaster.config;
 
 public class SessionHandler {
 		private static String currentSessionId;

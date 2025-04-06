@@ -1,10 +1,10 @@
-package com.stayease.config;
+package com.staymaster.config;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import com.stayease.models.User;
+import com.staymaster.models.User;
 
 public class UserSessionManager {
     private static Map<String, UserSession> sessions = new HashMap<>();

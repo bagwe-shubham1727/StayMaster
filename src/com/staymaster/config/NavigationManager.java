@@ -1,4 +1,4 @@
-package com.stayease.config;
+package com.staymaster.config;
 
 import java.io.IOException;
 import java.util.Stack;

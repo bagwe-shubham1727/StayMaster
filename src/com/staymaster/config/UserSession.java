@@ -1,6 +1,6 @@
-package com.stayease.config;
+package com.staymaster.config;
 
-import com.stayease.models.User;
+import com.staymaster.models.User;
 
 	public	class UserSession {
 	    private User user;

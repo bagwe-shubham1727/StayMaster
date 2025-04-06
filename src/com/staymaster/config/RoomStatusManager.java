@@ -1,4 +1,4 @@
-package com.stayease.config;
+package com.staymaster.config;
 
 import java.util.HashMap;
 import java.util.Map;
