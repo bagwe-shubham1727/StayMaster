@@ -14,7 +14,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: linear-gradient(to bottom, #e8f1f6, #d4e1e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stayease.controllers.LoginController">
+<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: linear-gradient(to bottom, #e8f1f6, #d4e1e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.staymaster.controllers.LoginController">
    <children>
       <!-- Left Section: Image -->
       <AnchorPane prefHeight="400.0" prefWidth="350.0" style="-fx-background-color: #003366;">
@@ -31,7 +31,7 @@
       <AnchorPane layoutX="350.0" prefHeight="400.0" prefWidth="350.0" style="-fx-background-color: white; -fx-border-radius: 15; -fx-padding: 20;">
          <children>
             <!-- Title -->
-            <Label layoutX="50.0" layoutY="30.0" text="Welcome to StayEase" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #003366;" />
+            <Label layoutX="50.0" layoutY="30.0" text="Welcome to StayMaster" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #003366;" />
             <Label layoutX="50.0" layoutY="60.0" text="Please sign in to continue" style="-fx-font-size: 14px; -fx-text-fill: #6c757d;" />
 
             <!-- Login Form -->
