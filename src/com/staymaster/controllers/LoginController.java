@@ -4,12 +4,12 @@ import java.io.IOException;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import com.stayease.config.NavigationManager;
-import com.stayease.config.SessionHandler;
-import com.stayease.config.UserSessionManager;
-import com.stayease.dao.UserDao;
-import com.stayease.hibernate.SessionManager;
-import com.stayease.models.User;
+import com.staymaster.config.NavigationManager;
+import com.staymaster.config.SessionHandler;
+import com.staymaster.config.UserSessionManager;
+import com.staymaster.dao.UserDao;
+import com.staymaster.hibernate.SessionManager;
+import com.staymaster.models.User;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

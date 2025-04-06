@@ -1,4 +1,4 @@
-package com.stayease.controllers.user;
+package com.staymaster.controllers.user;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -6,16 +6,16 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 
-import com.stayease.config.BookingTree;
-import com.stayease.config.NavigationManager;
-import com.stayease.config.SessionHandler;
-import com.stayease.config.UserSession;
-import com.stayease.config.UserSessionManager;
-import com.stayease.dao.UserDao;
-import com.stayease.hibernate.SessionManager;
-import com.stayease.models.Booking;
-import com.stayease.models.Room;
-import com.stayease.models.User;
+import com.staymaster.config.BookingTree;
+import com.staymaster.config.NavigationManager;
+import com.staymaster.config.SessionHandler;
+import com.staymaster.config.UserSession;
+import com.staymaster.config.UserSessionManager;
+import com.staymaster.dao.UserDao;
+import com.staymaster.hibernate.SessionManager;
+import com.staymaster.models.Booking;
+import com.staymaster.models.Room;
+import com.staymaster.models.User;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
