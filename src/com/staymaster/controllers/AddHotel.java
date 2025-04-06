@@ -36,6 +36,8 @@ public class AddHotel {
     private TextField availableRoomTxt;
     @FXML
     private TextField descriptionTxt;
+    @FXML
+    private TextField amenityTxt;
 
     @FXML
     public void handleAddHotelBtn(ActionEvent event) throws IOException {
@@ -50,11 +52,12 @@ public class AddHotel {
             String totalRoomsInput = totalRoomsTxt.getText();
             String availableRoomsInput = availableRoomTxt.getText();
             String description = descriptionTxt.getText();
+            String amenities = amenityTxt.getText();
 
             // Validation
             if (hotelName.isEmpty() || street.isEmpty() || city.isEmpty() || state.isEmpty()
                     || country.isEmpty() || zipCodeInput.isEmpty() || totalRoomsInput.isEmpty()
-                    || availableRoomsInput.isEmpty() || description.isEmpty()) {
+                    || availableRoomsInput.isEmpty() || description.isEmpty() || amenities.isEmpty()) {
                 showErrorAlert("Validation Error", "All fields must be filled out.");
                 return;
             }
@@ -65,8 +68,8 @@ public class AddHotel {
             int availableRooms = Integer.parseInt(availableRoomsInput);
 
             // Validate numeric fields
-            if (zipcode <= 0 || zipCodeInput.length() != 6) {
-                showErrorAlert("Validation Error", "Zip Code must be a positive number and of 6 digits.");
+            if (zipcode <= 0) {
+                showErrorAlert("Validation Error", "Zip Code must be a positive number.");
                 return;
             }
             if (totalRooms <= 0) {
@@ -145,5 +148,6 @@ public class AddHotel {
         totalRoomsTxt.clear();
         availableRoomTxt.clear();
         descriptionTxt.clear();
+        amenityTxt.clear();
     }
 }
