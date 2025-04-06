@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="636.0" prefWidth="880.0" style="-fx-background-color: linear-gradient(to bottom, #d9f2f9, #86c8d6);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stayease.controllers.user.BookingHistory">
+   <children>
+      <!-- Header Section -->
+      <AnchorPane prefHeight="70.0" prefWidth="880.0" style="-fx-background-color: #0F7A59; -fx-border-color: #86c8d6;">
+         <children>
+            <Text fill="WHITE" layoutX="20.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Booking History" wrappingWidth="300.0">
+               <font>
+                  <Font name="Arial Bold" size="28.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+
+      <!-- Table Section -->
+      <TableView fx:id="bookingTbl" layoutX="20.0" layoutY="90.0" prefHeight="470.0" prefWidth="840.0" style="-fx-border-color: #86c8d6; -fx-border-radius: 10; -fx-background-radius: 10;">
+         <effect>
+            <DropShadow radius="10.0" color="#00336644" />
+         </effect>
+      </TableView>
+
+      <!-- Buttons Section -->
+      <Button fx:id="BackBtn" layoutX="20.0" layoutY="580.0" mnemonicParsing="false" onAction="#handleBackBtn" prefHeight="40.0" prefWidth="150.0" text="Back" style="-fx-background-color: #D9534F; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-size: 16px;">
+         <effect>
+            <DropShadow radius="5.0" color="#00000088" />
+         </effect>
+      </Button>
+
+      <Button fx:id="sortBtn" layoutX="710.0" layoutY="580.0" mnemonicParsing="false" onAction="#handleSortBtn" prefHeight="40.0" prefWidth="150.0" text="Sort Bookings" style="-fx-background-color: #279B78; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-size: 16px;">
+         <effect>
+            <DropShadow radius="5.0" color="#00000088" />
+         </effect>
+      </Button>
+   </children>
+</AnchorPane>

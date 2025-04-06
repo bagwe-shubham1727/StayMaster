@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="636.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stayease.controllers.RoomManagement" style="-fx-background-color: linear-gradient(to bottom, #d9f2f9, #86c8d6);">
+   <children>
+      <!-- Header Section -->
+      <AnchorPane prefHeight="70.0" prefWidth="926.0" style="-fx-background-color: #003366;">
+         <children>
+            <Text fill="WHITE" layoutX="30.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rooms Management" wrappingWidth="200.0">
+               <font>
+                  <Font name="Arial Bold" size="30.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+
+      <!-- Input Fields Section -->
+      <Label layoutX="40.0" layoutY="100.0" text="Room Type" textFill="BLACK" style="-fx-font-size: 16px;" />
+      <TextField fx:id="roomTypeTxt" layoutX="140.0" layoutY="95.0" prefHeight="38.0" prefWidth="250.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" />
+
+      <Label layoutX="450.0" layoutY="100.0" text="Capacity" textFill="BLACK" style="-fx-font-size: 16px;" />
+      <TextField fx:id="capacityTxt" layoutX="540.0" layoutY="95.0" prefHeight="38.0" prefWidth="250.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" />
+
+      <Label layoutX="40.0" layoutY="160.0" text="Price" textFill="BLACK" style="-fx-font-size: 16px;" />
+      <TextField fx:id="priceTxt" layoutX="140.0" layoutY="155.0" prefHeight="38.0" prefWidth="250.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" />
+
+      <Label layoutX="450.0" layoutY="160.0" text="Room Status" textFill="BLACK" style="-fx-font-size: 16px;" />
+      <TextField fx:id="roomStatusTxt" layoutX="540.0" layoutY="155.0" prefHeight="38.0" prefWidth="250.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" />
+
+      <!-- Buttons Section -->
+      <Button fx:id="addBtn" layoutX="200.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleAddBtn" text="Add Room" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #279B78; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;">
+         <effect>
+            <DropShadow radius="5.0" color="#00000088" />
+         </effect>
+      </Button>
+
+      <Button fx:id="BackBtn" layoutX="400.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleBackBtn" text="Back" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #FFC107; -fx-text-fill: black; -fx-font-size: 16px; -fx-background-radius: 10;">
+         <effect>
+            <DropShadow radius="5.0" color="#00000088" />
+         </effect>
+      </Button>
+
+      <!-- Table Section -->
+      <TableView fx:id="roomTbl" layoutX="20.0" layoutY="300.0" prefHeight="320.0" prefWidth="840.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-border-radius: 10; -fx-background-radius: 10;">
+         <effect>
+            <DropShadow radius="10.0" color="#00336644" />
+         </effect>
+      </TableView>
+   </children>
+</AnchorPane>
