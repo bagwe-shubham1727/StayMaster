@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.collections.FXCollections?>
 
 
 <AnchorPane prefHeight="670.0" prefWidth="988.0"
