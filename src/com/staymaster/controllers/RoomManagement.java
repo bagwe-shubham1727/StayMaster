@@ -24,6 +24,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class RoomManagement {
@@ -41,10 +42,12 @@ public class RoomManagement {
     private TextField capacityTxt;
 
     @FXML
-    private TextField roomStatusTxt;
+    private ComboBox<String> roomStatusCombo;
+
 
     @FXML
     public void initialize() {
+        roomStatusCombo.setItems(FXCollections.observableArrayList("Available", "Not Available"));
         setupRoomTable();
         System.out.println("Inside initialize");
         loadRoomData();
@@ -83,7 +86,7 @@ public class RoomManagement {
     @FXML
     public void handleAddBtn(ActionEvent event) throws IOException {
         String roomType = roomTypeTxt.getText();
-        String roomStatus = roomStatusTxt.getText();
+        String roomStatus = roomStatusCombo.getValue();
         String capacityStr = capacityTxt.getText();
         String priceStr = priceTxt.getText();
 
@@ -175,7 +178,7 @@ public class RoomManagement {
     }
 
     private void clearFields() {
-        roomStatusTxt.clear();
+        roomStatusCombo.getSelectionModel().clearSelection();
         roomTypeTxt.clear();
         priceTxt.clear();
         capacityTxt.clear();
