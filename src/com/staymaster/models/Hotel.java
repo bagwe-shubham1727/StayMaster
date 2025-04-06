@@ -151,6 +151,11 @@ public class Hotel {
 		this.availableRooms = availableRooms;
 	}
 
+	@Override
+	public String toString() {
+	    return name; 
+	}
+
 	
 	
     

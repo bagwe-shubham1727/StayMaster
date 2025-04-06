@@ -43,6 +43,9 @@ public class RoomManagement {
 
     @FXML
     private ComboBox<String> roomStatusCombo;
+    
+    @FXML
+    private ComboBox<Hotel> hotelComboBox;
 
 
     @FXML
@@ -51,6 +54,7 @@ public class RoomManagement {
         setupRoomTable();
         System.out.println("Inside initialize");
         loadRoomData();
+        loadHotelsIntoComboBox(); // Load hotels into ComboBox
     }
 
     private void setupRoomTable() {
@@ -102,30 +106,17 @@ public class RoomManagement {
             SessionFactory sessionFactory = SessionManager.getSessionFactory();
             Room room = new Room();
             RoomDao roomDao = new RoomDao(sessionFactory);
-            Hotel hotel = HotelContext.getCurrentHotel();
+            Hotel hotel = hotelComboBox.getSelectionModel().getSelectedItem();
 
             room.setRoomStatus(roomStatus);
             room.setCapacity(capacity);
             room.setRoomType(roomType);
             room.setPrice(price);
+            room.setHotel(hotel);
 
-            if (hotel != null) {
-                room.setHotel(hotel);
-
-                if (hotel.getRooms() == null) {
-                    hotel.setRooms(new ArrayList<>());
-                }
-
-                hotel.getRooms().add(room);
-            } else {
-                HotelDao hotelDao = new HotelDao(sessionFactory);
-                hotel = hotelDao.findByName("sample");
-                room.setHotel(hotel);
-                if (hotel.getRooms() == null) {
-                    hotel.setRooms(new ArrayList<>());
-                }
-
-                hotel.getRooms().add(room);
+            if (hotel == null) {
+                showErrorMessage("Please select a hotel from the dropdown.");
+                return;
             }
 
             roomDao.save(room);
@@ -156,6 +147,15 @@ public class RoomManagement {
         ObservableList<Room> observableRooms = FXCollections.observableArrayList(rooms);
         roomTbl.setItems(observableRooms);
     }
+    
+    private void loadHotelsIntoComboBox() {
+        SessionFactory sessionFactory = SessionManager.getSessionFactory();
+        HotelDao hotelDao = new HotelDao(sessionFactory);
+        List<Hotel> hotels = hotelDao.findHotel(); // Ensure HotelDao has this method
+        ObservableList<Hotel> hotelList = FXCollections.observableArrayList(hotels);
+        hotelComboBox.setItems(hotelList);
+    }
+
 
     private boolean isValidate(String roomType, String roomStatus, String capacity, String price) {
         return !(roomType.isEmpty() || roomStatus.isEmpty() || capacity.isEmpty() || price.isEmpty());

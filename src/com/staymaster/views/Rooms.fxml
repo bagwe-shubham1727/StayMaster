@@ -37,19 +37,24 @@
       <Label layoutX="450.0" layoutY="160.0" text="Room Status" textFill="BLACK" style="-fx-font-size: 16px;" />
       <ComboBox fx:id="roomStatusCombo" layoutX="540.0" layoutY="155.0" prefHeight="38.0" prefWidth="250.0" promptText="Room Status" style="-fx-background-color: #f8f9fa; -fx-border-radius: 10px; -fx-background-radius: 10px; -fx-padding: 10px;" />
 
+	  <Label layoutX="40.0" layoutY="220.0" text="Hotel" textFill="BLACK" style="-fx-font-size: 16px;" />
+	  <ComboBox fx:id="hotelComboBox" layoutX="140.0" layoutY="215.0" prefHeight="38.0" prefWidth="250.0" promptText="Select hotel" style="-fx-border-radius: 10; -fx-background-radius: 10;" />
+
 
       <!-- Buttons Section -->
-      <Button fx:id="addBtn" layoutX="200.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleAddBtn" text="Add Room" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #279B78; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;">
-         <effect>
-            <DropShadow radius="5.0" color="#00000088" />
-         </effect>
+      <Button fx:id="addBtn" layoutX="200.0" layoutY="275.0" mnemonicParsing="false" onAction="#handleAddBtn" text="Add Room" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #279B78; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;">
+      <effect>
+        <DropShadow radius="5.0" color="#00000088" />
+      </effect>
       </Button>
 
-      <Button fx:id="BackBtn" layoutX="400.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleBackBtn" text="Back" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #FFC107; -fx-text-fill: black; -fx-font-size: 16px; -fx-background-radius: 10;">
-         <effect>
-            <DropShadow radius="5.0" color="#00000088" />
-         </effect>
+
+      <Button fx:id="BackBtn" layoutX="400.0" layoutY="275.0" mnemonicParsing="false" onAction="#handleBackBtn" text="Back" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #FFC107; -fx-text-fill: black; -fx-font-size: 16px; -fx-background-radius: 10;">
+      <effect>
+        <DropShadow radius="5.0" color="#00000088" />
+      </effect>
       </Button>
+
 
       <!-- Table Section -->
       <TableView fx:id="roomTbl" layoutX="20.0" layoutY="300.0" prefHeight="320.0" prefWidth="840.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-border-radius: 10; -fx-background-radius: 10;">

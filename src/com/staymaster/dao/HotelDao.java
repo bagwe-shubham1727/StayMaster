@@ -103,6 +103,18 @@ public class HotelDao {
         }
     }
     
+    public List<Hotel> findHotel() {
+        Session session = sessionFactory.openSession();
+        try {
+            String hql = "FROM Hotel";
+            Query<Hotel> query = session.createQuery(hql, Hotel.class);
+            return query.getResultList();
+        } finally {
+            session.close();
+        }
+    }
+
+    
     public Hotel getHotelByNameAndZipCode(String name, Long zipCode) {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery("FROM Hotel WHERE name = :name AND zipCode = :zipCode", Hotel.class)
