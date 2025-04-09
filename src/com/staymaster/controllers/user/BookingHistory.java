@@ -9,8 +9,10 @@ import org.hibernate.SessionFactory;
 import com.staymaster.config.BookingTree;
 import com.staymaster.config.NavigationManager;
 import com.staymaster.config.SessionHandler;
+import com.staymaster.config.SortUtil;
 import com.staymaster.config.UserSession;
 import com.staymaster.config.UserSessionManager;
+import com.staymaster.dao.BookingDao;
 import com.staymaster.dao.UserDao;
 import com.staymaster.hibernate.SessionManager;
 import com.staymaster.models.Booking;
@@ -32,13 +34,17 @@ public class BookingHistory {
 
 	@FXML
 	private TableView<Booking> bookingTbl;
+	BookingDao bookingDao;
 	
 	
 
 	
 	@FXML
 	public void handleSortBtn(ActionEvent event) throws IOException {
-		
+		List<Booking> bookings = bookingDao.findAll();
+		SortUtil.mergeSort(bookings);
+        ObservableList<Booking> observableBookings = FXCollections.observableArrayList(bookings);
+        bookingTbl.setItems(observableBookings);
 	}
 	
 	@FXML
@@ -57,6 +63,7 @@ public class BookingHistory {
 		userDAO = new UserDao(sessionFactory);
 		setup();
 		loadBookingData();
+		bookingDao = new BookingDao(sessionFactory);
 		
 	}
 	

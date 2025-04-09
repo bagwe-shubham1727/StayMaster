@@ -42,14 +42,14 @@
 
 
       <!-- Buttons Section -->
-      <Button fx:id="addBtn" layoutX="200.0" layoutY="275.0" mnemonicParsing="false" onAction="#handleAddBtn" text="Add Room" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #279B78; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;">
+      <Button fx:id="addBtn" layoutX="290.0" layoutY="275.0" mnemonicParsing="false" onAction="#handleAddBtn" text="Add Room" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #279B78; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10;">
       <effect>
         <DropShadow radius="5.0" color="#00000088" />
       </effect>
       </Button>
 
 
-      <Button fx:id="BackBtn" layoutX="400.0" layoutY="275.0" mnemonicParsing="false" onAction="#handleBackBtn" text="Back" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #FFC107; -fx-text-fill: black; -fx-font-size: 16px; -fx-background-radius: 10;">
+      <Button fx:id="BackBtn" layoutX="450.0" layoutY="275.0" mnemonicParsing="false" onAction="#handleBackBtn" text="Back" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #FFC107; -fx-text-fill: black; -fx-font-size: 16px; -fx-background-radius: 10;">
       <effect>
         <DropShadow radius="5.0" color="#00000088" />
       </effect>
@@ -57,7 +57,7 @@
 
 
       <!-- Table Section -->
-      <TableView fx:id="roomTbl" layoutX="20.0" layoutY="300.0" prefHeight="320.0" prefWidth="840.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-border-radius: 10; -fx-background-radius: 10;">
+      <TableView fx:id="roomTbl" layoutX="40.0" layoutY="330.0" prefHeight="280.0" prefWidth="800.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-border-radius: 10; -fx-background-radius: 10;">
          <effect>
             <DropShadow radius="10.0" color="#00336644" />
          </effect>
