@@ -64,7 +64,7 @@ public class BookingTree {
         if (node == null) {
             return;
         }
-        if (node.getBooking().getUser().getFirstName().equals(user.getFirstName())) {
+        if (node.getBooking().getUser().getUserId().equals(user.getUserId())) {
             bookings.add(node.getBooking());
         }
 
