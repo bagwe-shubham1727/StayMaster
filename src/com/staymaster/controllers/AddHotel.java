@@ -119,10 +119,6 @@ public class AddHotel {
         }
     }
 
-    @FXML
-    public void handleUpdateBtn(ActionEvent event) throws IOException {
-        // Similar logic to handleAddHotelBtn but updates an existing hotel
-    }
 
     @FXML
     public void handleBackBtn(ActionEvent event) throws IOException {
