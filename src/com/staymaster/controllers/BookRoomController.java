@@ -245,14 +245,13 @@ public class BookRoomController {
 			booking.setRoom(selectedRoom);
 			booking.setCheckInDate(Date.valueOf(checkInDate));
 			booking.setCheckOutDate(Date.valueOf(checkOutDate));
-			//booking.setStatus("Confirmed");
+			booking.setStatus("Confirmed");
 			booking.setPriority(1);
 			
 
 			bookingDao.update(booking);
 
-			selectedRoom.setRoomStatus("Booked");
-			roomDao.update(selectedRoom);
+			
 
 			showAlert(AlertType.INFORMATION, "Success", "Room booked successfully.");
 			
