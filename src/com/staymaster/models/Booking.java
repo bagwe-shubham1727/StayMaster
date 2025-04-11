@@ -28,7 +28,7 @@ public class Booking {
     private Date checkOutDate;
     private String status;
      // Confirmed, Pending, Cancelled
-    private int priority; 
+
 	public Long getBookingId() {
 		return bookingId;
 	}
@@ -75,14 +75,6 @@ public class Booking {
 
 	public void setStatus(String status) {
 		this.status = status;
-	}
-
-	public int getPriority() {
-		return priority;
-	}
-
-	public void setPriority(int priority) {
-		this.priority = priority;
 	}
 	
     public String getUserFirstName() {

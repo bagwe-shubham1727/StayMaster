@@ -217,7 +217,7 @@ public class BookRoomController {
 			booking.setCheckInDate(Date.valueOf(checkInDate));
 			booking.setCheckOutDate(Date.valueOf(checkOutDate));
 			booking.setStatus("Confirmed");
-			booking.setPriority(1);
+			
 
 			bookingDao.update(booking);
 
