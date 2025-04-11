@@ -42,6 +42,18 @@ public class BookingDao {
             session.close();
         }
     }
+    
+    public List<Booking> findByUserId(Long userId) {
+        Session session = sessionFactory.openSession();
+        try {
+            String hql = "FROM Booking b WHERE b.user.id = :userId";
+            return session.createQuery(hql, Booking.class)
+                          .setParameter("userId", userId)
+                          .getResultList();
+        } finally {
+            session.close();
+        }
+    }
 
     public void update(Booking booking) {
         Session session = sessionFactory.openSession();

@@ -38,7 +38,7 @@ public class BookingHistory {
 
 	@FXML
 	public void handleSortBtn(ActionEvent event) throws IOException {
-		List<Booking> bookings = bookingDao.findAll();
+		List<Booking> bookings = bookingDao.findByUserId(getCurrentUser().getUserId());
 		SortUtil.mergeSort(bookings);
 		ObservableList<Booking> observableBookings = FXCollections.observableArrayList(bookings);
 		bookingTbl.setItems(observableBookings);
