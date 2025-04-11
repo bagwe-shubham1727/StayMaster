@@ -44,6 +44,8 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 public class BookRoomController {
+	
+	boolean ableToBook = true;
 
 	@FXML
 	private TableView<Room> roomTbl;
@@ -80,13 +82,19 @@ public class BookRoomController {
 				}
 			}
 		});
+		
+		//checkInDatePicker.valueProperty().addListener((obs, oldVal, newVal) -> loadRoomData());
+		checkOutDatePicker.valueProperty().addListener((obs, oldVal, newVal) -> loadRoomData());
+
 
 		buttonBook.setOnAction(event -> {
 			bookRoom();
 		});
 
 		setupRoomTable();
-		loadRoomData();
+		//loadRoomData();
+		
+		
 	}
 
 	@FXML
@@ -148,20 +156,36 @@ public class BookRoomController {
 	}
 
 	private void loadRoomData() {
-		try {
-			System.out.println("Inside loading more data from the database...");
-			SessionFactory sessionFactory = SessionManager.getSessionFactory();
-			RoomDao roomDao = new RoomDao(sessionFactory);
+	    try {
+	        SessionFactory sessionFactory = SessionManager.getSessionFactory();
+	        RoomDao roomDao = new RoomDao(sessionFactory);
 
-			List<Room> rooms = roomDao.findAll();
-			originalRooms = FXCollections.observableArrayList(rooms); // Store the original list
-			ObservableList<Room> observableRooms = FXCollections.observableArrayList(rooms);
-			roomTbl.setItems(observableRooms);
-		} catch (Exception e) {
-			e.printStackTrace();
-			showAlert(AlertType.ERROR, "Error", "Failed to load room data from the database.");
-		}
+	        LocalDate checkIn = checkInDatePicker.getValue();
+	        LocalDate checkOut = checkOutDatePicker.getValue();
+	        String selectedRoomType = comboRoomType.getSelectionModel().getSelectedItem();
+
+	        List<Room> rooms;
+
+	        if (checkIn != null && checkOut != null && !checkOut.isBefore(checkIn)) {
+	            rooms = roomDao.findAvailableRooms(Date.valueOf(checkIn), Date.valueOf(checkOut), selectedRoomType);
+	        } else {
+	        	showAlert(AlertType.INFORMATION, "No Rooms", "No available rooms found for the selected criteria. Showing all rooms we have");
+	            rooms = roomDao.findAll(); // fallback if no valid date
+	            if (!selectedRoomType.equalsIgnoreCase("All")) {
+	                rooms.removeIf(room -> !room.getRoomType().equalsIgnoreCase(selectedRoomType));
+	            }
+	            ableToBook = false;
+	        }
+
+	        originalRooms = FXCollections.observableArrayList(rooms);
+	        roomTbl.setItems(FXCollections.observableArrayList(rooms));
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        showAlert(AlertType.ERROR, "Error", "Failed to load room data.");
+	    }
 	}
+
+
 
 	private void showAlert(AlertType alertType, String title, String message) {
 		Alert alert = new Alert(alertType);
@@ -197,8 +221,8 @@ public class BookRoomController {
 			return;
 		}
 
-		if (selectedRoom.getRoomStatus().equalsIgnoreCase("Booked")) {
-			showAlert(AlertType.WARNING, "Warning", "This room is already booked.");
+		if (!ableToBook) {
+			showAlert(AlertType.WARNING, "Warning", "Please correct criteria");
 			return;
 		}
 
@@ -227,8 +251,7 @@ public class BookRoomController {
 
 			bookingDao.update(booking);
 
-			selectedRoom.setRoomStatus("Booked");
-			roomDao.update(selectedRoom);
+			
 
 			showAlert(AlertType.INFORMATION, "Success", "Room booked successfully.");
 			

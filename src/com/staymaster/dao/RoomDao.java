@@ -1,5 +1,6 @@
 package com.staymaster.dao;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -135,6 +136,36 @@ public class RoomDao {
         }
     }
 	
+    public List<Room> findAvailableRooms(Date checkIn, Date checkOut, String roomType) {
+        Session session = sessionFactory.openSession();
+        try {
+            StringBuilder sql = new StringBuilder("""
+                SELECT r.* FROM "rooms" r
+                WHERE r.roomid NOT IN (
+                    SELECT b.room_id FROM "bookings" b
+                    WHERE b.status = 'Confirmed'
+                    AND (:checkIn < b.checkoutdate AND :checkOut > b.checkindate)
+                )
+            """);
+
+            if (!roomType.equalsIgnoreCase("All")) {
+                sql.append(" AND r.roomtype = :roomType");
+            }
+
+            Query<Room> query = session.createNativeQuery(sql.toString(), Room.class);
+            query.setParameter("checkIn", checkIn);
+            query.setParameter("checkOut", checkOut);
+            if (!roomType.equalsIgnoreCase("All")) {
+                query.setParameter("roomType", roomType);
+            }
+
+            return query.getResultList();
+        } finally {
+            session.close();
+        }
+    }
+
+
 	
 	
 }
