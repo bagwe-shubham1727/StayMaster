@@ -227,7 +227,7 @@ public class BookRoomController {
 
 			showAlert(AlertType.INFORMATION, "Success", "Room booked successfully.");
 			
-			sendEmail(currentUser.getEmail(), currentUser.getFirstName(), booking.getCheckInDate(), booking.getCheckOutDate());
+			sendEmail(currentUser.getEmail(), currentUser.getFirstName(), booking.getCheckInDate(), booking.getCheckOutDate(), selectedRoom.getHotel().getName(), selectedRoom.getRoomType());
 			// Refresh table data
 			loadRoomData();
 		} catch (Exception e) {
@@ -237,7 +237,7 @@ public class BookRoomController {
 	}
 	
 	//Mail trigger
-	private void sendEmail(String email, String user, Date startDate, Date endDate) {
+	private void sendEmail(String email, String user, Date startDate, Date endDate, String hotelName, String roomType) {
 		//Email Setup
 		final String password = "ibsremjnquvvkapq";
 		String fromEmail = "bostonhomies4@gmail.com";
@@ -261,9 +261,10 @@ public class BookRoomController {
 		try {
 			msg.setFrom(new InternetAddress(fromEmail));
 			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
-			msg.setSubject(user + "Your Booking Is Confirmed!");
+			msg.setSubject(user + " Your Booking Is Confirmed!");
 
-			String bodyText = "Dear" + user + ",\n\n" + "Your room booking is confirmed!.\n"
+			String bodyText = "Dear " + user + ",\n\n" + "Your room booking is confirmed!.\n" + 
+					"Below are your booking details: \n" + "Hotel:" + hotelName + "\n" + "Room Type:" + roomType + "\n"
 					+ "Check-In Date " + startDate + "\n" + "Check-Out Date: " + endDate + "\n\n" + "Best regards,\n"
 					+ "StayMaster";
 
