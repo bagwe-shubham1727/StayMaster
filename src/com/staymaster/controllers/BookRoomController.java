@@ -191,6 +191,11 @@ public class BookRoomController {
 			showAlert(AlertType.WARNING, "Warning", "Check-out date cannot be before the check-in date.");
 			return;
 		}
+		
+		if (selectedRoom.getRoomStatus().equalsIgnoreCase("Not Available")) {
+			showAlert(AlertType.WARNING, "Warning", "This room is currently not available for booking.");
+			return;
+		}
 
 		if (selectedRoom.getRoomStatus().equalsIgnoreCase("Booked")) {
 			showAlert(AlertType.WARNING, "Warning", "This room is already booked.");
