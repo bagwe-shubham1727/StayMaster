@@ -33,7 +33,7 @@ public class RoomManagement {
     private TableView<Room> roomTbl;
 
     @FXML
-    private TextField roomTypeTxt;
+    private ComboBox<String> roomTypeCombo;
 
     @FXML
     private TextField priceTxt;
@@ -51,6 +51,7 @@ public class RoomManagement {
     @FXML
     public void initialize() {
         roomStatusCombo.setItems(FXCollections.observableArrayList("Available", "Not Available"));
+        roomTypeCombo.setItems(FXCollections.observableArrayList("Deluxe", "Executive"));
         setupRoomTable();
         System.out.println("Inside initialize");
         loadRoomData();
@@ -89,7 +90,7 @@ public class RoomManagement {
 
     @FXML
     public void handleAddBtn(ActionEvent event) throws IOException {
-        String roomType = roomTypeTxt.getText();
+    	String roomType = roomTypeCombo.getValue();
         String roomStatus = roomStatusCombo.getValue();
         String capacityStr = capacityTxt.getText();
         String priceStr = priceTxt.getText();
@@ -179,7 +180,7 @@ public class RoomManagement {
 
     private void clearFields() {
         roomStatusCombo.getSelectionModel().clearSelection();
-        roomTypeTxt.clear();
+        roomTypeCombo.getSelectionModel().clearSelection();
         priceTxt.clear();
         capacityTxt.clear();
     }
