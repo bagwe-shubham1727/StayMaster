@@ -95,10 +95,14 @@ public class BookingHistory {
 	    // Status
 	    TableColumn<Booking, String> statusCol = new TableColumn<>("Status");
 	    statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
+	    
+	    // Priority
+	    TableColumn<Booking, Integer> priorityCol = new TableColumn<>("Priority");
+ 	    priorityCol.setCellValueFactory(new PropertyValueFactory<>("priority"));
 
 
 	    // Adding the columns to the table
-	    bookingTbl.getColumns().addAll(bookingIdCol, userCol, roomCol, checkInDateCol, checkOutDateCol, statusCol);
+	    bookingTbl.getColumns().addAll(bookingIdCol, userCol, roomCol, checkInDateCol, checkOutDateCol, statusCol, priorityCol);
 	}
 	
 	

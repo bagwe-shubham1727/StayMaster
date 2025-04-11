@@ -75,8 +75,12 @@ public class AdminBooking {
 	    TableColumn<Booking, String> statusCol = new TableColumn<>("Status");
 	    statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
 
+	    // Priority
+ 	    TableColumn<Booking, Integer> priorityCol = new TableColumn<>("Priority");
+ 	    priorityCol.setCellValueFactory(new PropertyValueFactory<>("priority"));
+ 	    
 	    // Adding the columns to the table
-	    bookingTbl.getColumns().addAll(bookingIdCol, userCol, userFnameCol,userLnameCol,checkInDateCol, checkOutDateCol, statusCol);
+	    bookingTbl.getColumns().addAll(bookingIdCol, userCol, userFnameCol,userLnameCol,checkInDateCol, checkOutDateCol, statusCol, priorityCol);
 	}
 
 	@FXML
