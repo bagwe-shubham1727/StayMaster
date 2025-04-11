@@ -260,9 +260,9 @@ public class BookRoomController {
 		try {
 			msg.setFrom(new InternetAddress(fromEmail));
 			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
-			msg.setSubject(user + " Your Booking Is Confirmed!");
+			msg.setSubject(user + "Your Booking Is Confirmed!");
 
-			String bodyText = "Dear " + user + ",\n\n" + "Your room booking is confirmed!.\n"
+			String bodyText = "Dear" + user + ",\n\n" + "Your room booking is confirmed!.\n"
 					+ "Check-In Date " + startDate + "\n" + "Check-Out Date: " + endDate + "\n\n" + "Best regards,\n"
 					+ "StayMaster";
 
