@@ -63,7 +63,6 @@
          <!-- Buttons -->
          <HBox spacing="20.0" alignment="CENTER">
             <Button fx:id="btnAddHotel" text="Add Hotel" onAction="#handleAddHotelBtn" style="-fx-background-color: #c70039; -fx-background-radius: 20; -fx-text-fill: white; -fx-padding: 10 20;" />
-            <Button fx:id="btnUpdate" text="Update Hotel" onAction="#handleUpdateBtn" style="-fx-background-color: #c70039; -fx-background-radius: 20; -fx-text-fill: white; -fx-padding: 10 20;" />
             <Button fx:id="backBtn" text="Back" onAction="#handleBackBtn" style="-fx-background-color: grey; -fx-background-radius: 20; -fx-text-fill: white; -fx-padding: 10 20;" />
          </HBox>
       </VBox>

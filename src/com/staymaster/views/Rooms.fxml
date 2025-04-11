@@ -26,8 +26,8 @@
 
       <!-- Input Fields Section -->
       <Label layoutX="40.0" layoutY="100.0" text="Room Type" textFill="BLACK" style="-fx-font-size: 16px;" />
-      <TextField fx:id="roomTypeTxt" layoutX="140.0" layoutY="95.0" prefHeight="38.0" prefWidth="250.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" />
-
+      <ComboBox fx:id="roomTypeCombo" layoutX="140.0" layoutY="95.0" prefHeight="38.0" prefWidth="250.0" promptText="Select Room Type" style="-fx-border-radius: 10; -fx-background-radius: 10;" />
+      
       <Label layoutX="450.0" layoutY="100.0" text="Capacity" textFill="BLACK" style="-fx-font-size: 16px;" />
       <TextField fx:id="capacityTxt" layoutX="540.0" layoutY="95.0" prefHeight="38.0" prefWidth="250.0" style="-fx-border-radius: 10; -fx-background-radius: 10;" />
 
