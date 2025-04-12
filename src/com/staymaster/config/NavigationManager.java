@@ -1,17 +1,16 @@
 package com.staymaster.config;
 
 import java.io.IOException;
-import java.util.Stack;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
+import com.staymaster.models.*;
 
 public class NavigationManager {
-	private static final Stack<Scene> sceneStack = new Stack<>();
+	private static final VectorStack<Scene> sceneStack = new VectorStack<Scene>(); //ADT Stack
     private static Stage mainStage; // Main stage reference
 
     public static void setStage(Stage stage) {
