@@ -1,4 +1,4 @@
-package com.staymaster.models;
+package com.staymaster.interfaces;
 
 import java.util.EmptyStackException;
 
