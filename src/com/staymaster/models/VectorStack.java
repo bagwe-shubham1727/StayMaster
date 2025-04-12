@@ -3,6 +3,8 @@ package com.staymaster.models;
 import java.util.EmptyStackException;
 import java.util.Vector;
 
+import com.staymaster.interfaces.StackInterface;
+
 /**
  * A class of stacks whose entries are stored in a vector.
  */
