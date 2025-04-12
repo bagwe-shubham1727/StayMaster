@@ -68,8 +68,8 @@ public class AddHotel {
             int availableRooms = Integer.parseInt(availableRoomsInput);
 
             // Validate numeric fields
-            if (zipcode <= 0 || zipCodeInput.length() != 6) {
-                showErrorAlert("Validation Error", "Zip Code must be a positive number and of 6 digits.");
+            if (zipcode <= 0 || zipCodeInput.length() <= 6) {
+                showErrorAlert("Validation Error", "Zip Code must be a positive number and of max 6 digits.");
                 return;
             }
             if (totalRooms <= 0) {
