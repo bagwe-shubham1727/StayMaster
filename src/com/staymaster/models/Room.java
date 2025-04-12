@@ -23,6 +23,7 @@ public class Room {
     @ManyToOne
     @JoinColumn(name = "hotel_id")
 	private Hotel hotel;
+    private String hotelName;
 	private double price;
 	private int capacity;
 	private String roomStatus; 
@@ -46,6 +47,14 @@ public class Room {
 
 	public void setRoomType(String roomType) {
 		this.roomType = roomType;
+	}
+	
+	public void setHotelName(String hotelName) {
+		this.hotelName = hotelName;
+	}
+	
+	public String getHotelName() {
+		return hotelName;
 	}
 
 	public Hotel getHotel() {

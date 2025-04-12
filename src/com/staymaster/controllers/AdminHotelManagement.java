@@ -1,6 +1,7 @@
 package com.staymaster.controllers;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import com.staymaster.config.NavigationManager;
@@ -34,8 +35,14 @@ public class AdminHotelManagement {
 
 		TableColumn<Room, String> roomStatusCol = new TableColumn<>("Room Status");
 		roomStatusCol.setCellValueFactory(new PropertyValueFactory<>("roomStatus"));
+		
+		TableColumn<Room, String> roomTypeCol = new TableColumn<>("Room Type");
+		roomTypeCol.setCellValueFactory(new PropertyValueFactory<>("roomType"));
+		
+		TableColumn<Room, String> hotelNameCol = new TableColumn<>("Hotel Name");
+		hotelNameCol.setCellValueFactory(new PropertyValueFactory<>("hotelName"));
 
-		roomStatusTbl.getColumns().addAll(roomIdCol, roomStatusCol);
+		roomStatusTbl.getColumns().addAll(roomIdCol, roomStatusCol, roomTypeCol, hotelNameCol);
 
 	}
 
@@ -73,18 +80,22 @@ public class AdminHotelManagement {
 	}
 
 	private void loadRoomData() {
-		RoomDao roomDao = new RoomDao(SessionManager.getSessionFactory());
-		Map<Integer, String> statuses = roomDao.findAllRoomsAndUpdateStatus();
+	    RoomDao roomDao = new RoomDao(SessionManager.getSessionFactory());
+	    Map<Integer, List<String>> statuses = roomDao.findAllRoomsAndUpdateStatus();
 
-		ObservableList<Room> observableRooms = FXCollections.observableArrayList();
-		statuses.forEach((id, status) -> {
-			Room room = new Room();
-			room.setRoomId(id);
-			room.setRoomStatus(status);
-			observableRooms.add(room);
-		});
+	    ObservableList<Room> observableRooms = FXCollections.observableArrayList();
+	    statuses.forEach((id, details) -> {
+	        Room room = new Room();
+	        room.setRoomId(id);
+	        room.setRoomStatus(details.get(0));      // status
+	        room.setRoomType(details.get(1));        // roomType
+	        room.setHotelName(details.get(2));      // hotelName
 
-		roomStatusTbl.setItems(observableRooms);
+	        observableRooms.add(room);
+	    });
+
+	    roomStatusTbl.setItems(observableRooms);
 	}
+
 
 }
