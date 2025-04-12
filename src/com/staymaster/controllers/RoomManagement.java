@@ -95,14 +95,25 @@ public class RoomManagement {
         String capacityStr = capacityTxt.getText();
         String priceStr = priceTxt.getText();
 
-        if (!isValidate(roomType, roomStatus, capacityStr, priceStr)) {
-            showErrorMessage("All fields are required and must contain valid values.");
-            return;
-        }
+        if (roomType == null || roomStatus == null || capacityStr == null || priceStr == null ||
+        	    roomType.isEmpty() || roomStatus.isEmpty() || capacityStr.isEmpty() || priceStr.isEmpty()) {
+        	    showErrorMessage("All fields are required.");
+        	    return;
+        	}
 
         try {
             int capacity = Integer.parseInt(capacityStr);
             double price = Double.parseDouble(priceStr);
+            
+            if (capacity <= 0) {
+                showErrorMessage("Capacity must be greater than 0.");
+                return;
+            }
+
+            if (price <= 0) {
+                showErrorMessage("Price must be greater than 0.");
+                return;
+            }
 
             SessionFactory sessionFactory = SessionManager.getSessionFactory();
             Room room = new Room();
