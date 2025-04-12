@@ -1,6 +1,7 @@
 package com.staymaster.dao;
 
 import java.sql.Date;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -101,24 +102,36 @@ public class RoomDao {
     }
     
     
-    public Map<Integer, String> findAllRoomsAndUpdateStatus() {
-        RoomStatusManager statusManager = RoomStatusManager.getInstance(); // Singleton access
+    public Map<Integer, List<String>> findAllRoomsAndUpdateStatus() {
+        RoomStatusManager statusManager = RoomStatusManager.getInstance(); // Singleton
         Session session = sessionFactory.openSession();
-        Map<Integer, String> roomStatusMap = new HashMap<>();
+        Map<Integer, List<String>> roomDetailsMap = new HashMap<>();
+
         try {
             String hql = "FROM Room";
             Query<Room> query = session.createQuery(hql, Room.class);
             List<Room> rooms = query.getResultList();
-            // Update the singleton RoomStatusManager and local map
+
             rooms.forEach(room -> {
+                // Update singleton room status
                 statusManager.updateRoomStatus(room.getRoomId(), room.getRoomStatus());
-                roomStatusMap.put(room.getRoomId(), room.getRoomStatus());
+
+                // Extract details
+                String status = room.getRoomStatus();
+                String roomType = room.getRoomType(); // or room.getRoomType().getTypeName() if it's an object
+                String hotelName = room.getHotel().getName(); // assumes getHotel() is mapped
+
+                // Store in map
+                List<String> details = Arrays.asList(status, roomType, hotelName);
+                roomDetailsMap.put(room.getRoomId(), details);
             });
         } finally {
             session.close();
         }
-        return roomStatusMap;
+
+        return roomDetailsMap;
     }
+
 
     
     
