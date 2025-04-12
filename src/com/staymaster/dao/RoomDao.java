@@ -17,168 +17,162 @@ import com.staymaster.models.Room;
 public class RoomDao {
 
 	private SessionFactory sessionFactory;
-    private RoomStatusManager statusManager;
+	private RoomStatusManager statusManager;
 
+	public RoomDao(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
-    public RoomDao(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-    
-    
-    private void initializeRoomStatuses() {
-        List<Room> rooms = findAll();
-        rooms.forEach(room -> statusManager.updateRoomStatus(room.getRoomId(), room.getRoomStatus()));
-    }
+	private void initializeRoomStatuses() {
+		List<Room> rooms = findAll();
+		rooms.forEach(room -> statusManager.updateRoomStatus(room.getRoomId(), room.getRoomStatus()));
+	}
 
-    public void save(Room room) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
-        try {
-            transaction = session.beginTransaction();
-            session.persist(room);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-    }
+	public void save(Room room) {
+		Session session = sessionFactory.openSession();
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			session.persist(room);
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
 
-    public Room findById(Long roomId) {
-        Session session = sessionFactory.openSession();
-        try {
-            return session.get(Room.class, roomId);
-        } finally {
-            session.close();
-        }
-    }
+	public Room findById(Long roomId) {
+		Session session = sessionFactory.openSession();
+		try {
+			return session.get(Room.class, roomId);
+		} finally {
+			session.close();
+		}
+	}
 
-    public void update(Room room) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
-        try {
-            transaction = session.beginTransaction();
-            session.merge(room);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-    }
+	public void update(Room room) {
+		Session session = sessionFactory.openSession();
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			session.merge(room);
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
 
-    public void delete(Room room) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
-        try {
-            transaction = session.beginTransaction();
-            session.remove(room);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-    }
+	public void delete(Room room) {
+		Session session = sessionFactory.openSession();
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			session.remove(room);
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
 
-    public List<Room> findAll() {
-        Session session = sessionFactory.openSession();
-        try {
-            String hql = "FROM Room";
-            Query<Room> query = session.createQuery(hql, Room.class);
-            return query.getResultList();
-        } finally {
-            session.close();
-        }
-    }
-    
-    
-    public Map<Integer, List<String>> findAllRoomsAndUpdateStatus() {
-        RoomStatusManager statusManager = RoomStatusManager.getInstance(); // Singleton
-        Session session = sessionFactory.openSession();
-        Map<Integer, List<String>> roomDetailsMap = new HashMap<>();
+	public List<Room> findAll() {
+		Session session = sessionFactory.openSession();
+		try {
+			String hql = "FROM Room";
+			Query<Room> query = session.createQuery(hql, Room.class);
+			return query.getResultList();
+		} finally {
+			session.close();
+		}
+	}
 
-        try {
-            String hql = "FROM Room";
-            Query<Room> query = session.createQuery(hql, Room.class);
-            List<Room> rooms = query.getResultList();
+	public Map<Integer, List<String>> findAllRoomsAndUpdateStatus() {
+		RoomStatusManager statusManager = RoomStatusManager.getInstance(); // Singleton access
+		Session session = sessionFactory.openSession();
+		Map<Integer, List<String>> roomDetailsMap = new HashMap<>();
 
-            rooms.forEach(room -> {
-                // Update singleton room status
-                statusManager.updateRoomStatus(room.getRoomId(), room.getRoomStatus());
+		try {
+			String hql = "FROM Room";
+			Query<Room> query = session.createQuery(hql, Room.class);
+			List<Room> rooms = query.getResultList();
 
-                // Extract details
-                String status = room.getRoomStatus();
-                String roomType = room.getRoomType(); // or room.getRoomType().getTypeName() if it's an object
-                String hotelName = room.getHotel().getName(); // assumes getHotel() is mapped
+			rooms.forEach(room -> {
+				// Null-safe extraction
+				Integer roomId = room.getRoomId();
+				String status = room.getRoomStatus() != null ? room.getRoomStatus() : "Unknown";
+				String roomType = room.getRoomType() != null ? room.getRoomType() : "Not Specified";
 
-                // Store in map
-                List<String> details = Arrays.asList(status, roomType, hotelName);
-                roomDetailsMap.put(room.getRoomId(), details);
-            });
-        } finally {
-            session.close();
-        }
+				String hotelName = "Not Linked";
+				if (room.getHotel() != null && room.getHotel().getName() != null) {
+					hotelName = room.getHotel().getName();
+				}
 
-        return roomDetailsMap;
-    }
+				// Update singleton
+				statusManager.updateRoomStatus(roomId, status);
 
+				// Add to result map
+				List<String> details = Arrays.asList(status, roomType, hotelName);
+				roomDetailsMap.put(roomId, details);
+			});
+		} finally {
+			session.close();
+		}
 
-    
-    
-    
+		return roomDetailsMap;
+	}
 
-    public Room findByType(String type) {
-        Session session = sessionFactory.openSession();
-        try {
-            String hql = "FROM Room WHERE roomtype = :type";
-            Query<Room> query = session.createQuery(hql, Room.class);
-            query.setParameter("type", type);
-            return query.uniqueResult();
-        } finally {
-            session.close();
-        }
-    }
-	
-    public List<Room> findAvailableRooms(Date checkIn, Date checkOut, String roomType) {
-        Session session = sessionFactory.openSession();
-        try {
-            StringBuilder sql = new StringBuilder("""
-                SELECT r.* FROM "rooms" r
-                WHERE r.roomid NOT IN (
-                    SELECT b.room_id FROM "bookings" b
-                    WHERE b.status = 'Confirmed'
-                    AND (:checkIn < b.checkoutdate AND :checkOut > b.checkindate)
-                )
-            """);
+	public Room findByType(String type) {
+		Session session = sessionFactory.openSession();
+		try {
+			String hql = "FROM Room WHERE roomtype = :type";
+			Query<Room> query = session.createQuery(hql, Room.class);
+			query.setParameter("type", type);
+			return query.uniqueResult();
+		} finally {
+			session.close();
+		}
+	}
 
-            if (!roomType.equalsIgnoreCase("All")) {
-                sql.append(" AND r.roomtype = :roomType");
-            }
+	public List<Room> findAvailableRooms(Date checkIn, Date checkOut, String roomType) {
+		Session session = sessionFactory.openSession();
+		try {
+			StringBuilder sql = new StringBuilder("""
+					    SELECT r.* FROM "rooms" r
+					    WHERE r.roomid NOT IN (
+					        SELECT b.room_id FROM "bookings" b
+					        WHERE b.status = 'Confirmed'
+					        AND (:checkIn < b.checkoutdate AND :checkOut > b.checkindate)
+					    )
+					""");
 
-            Query<Room> query = session.createNativeQuery(sql.toString(), Room.class);
-            query.setParameter("checkIn", checkIn);
-            query.setParameter("checkOut", checkOut);
-            if (!roomType.equalsIgnoreCase("All")) {
-                query.setParameter("roomType", roomType);
-            }
+			if (!roomType.equalsIgnoreCase("All")) {
+				sql.append(" AND r.roomtype = :roomType");
+			}
 
-            return query.getResultList();
-        } finally {
-            session.close();
-        }
-    }
+			Query<Room> query = session.createNativeQuery(sql.toString(), Room.class);
+			query.setParameter("checkIn", checkIn);
+			query.setParameter("checkOut", checkOut);
+			if (!roomType.equalsIgnoreCase("All")) {
+				query.setParameter("roomType", roomType);
+			}
 
+			return query.getResultList();
+		} finally {
+			session.close();
+		}
+	}
 
-	
-	
 }
